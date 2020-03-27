@@ -1,3 +1,3 @@
-module github.com/iGoogle-ink/gopay
+module github.com/cqlmq/gopay
 
-go 1.13
+go 1.14

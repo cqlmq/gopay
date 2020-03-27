@@ -3,8 +3,8 @@ package wechat
 import (
 	"fmt"
 
-	"github.com/iGoogle-ink/gopay"
-	"github.com/iGoogle-ink/gopay/wechat"
+	"github.com/cqlmq/sycpay"
+	"github.com/cqlmq/sycpay/wechat"
 )
 
 func DownloadFundFlow() {
@@ -17,8 +17,8 @@ func DownloadFundFlow() {
 	client := wechat.NewClient("wxdaa2ab9ef87b5497", "1368139502", "GFDS8j98rewnmgl45wHTt980jg543abc", false)
 
 	// 初始化参数结构体
-	bm := make(gopay.BodyMap)
-	bm.Set("nonce_str", gopay.GetRandomString(32))
+	bm := make(sycpay.BodyMap)
+	bm.Set("nonce_str", sycpay.GetRandomString(32))
 	bm.Set("sign_type", wechat.SignType_HMAC_SHA256)
 	bm.Set("bill_date", "20190122")
 	bm.Set("account_type", "Basic")

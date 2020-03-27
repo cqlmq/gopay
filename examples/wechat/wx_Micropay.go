@@ -3,8 +3,8 @@ package wechat
 import (
 	"fmt"
 
-	"github.com/iGoogle-ink/gopay"
-	"github.com/iGoogle-ink/gopay/wechat"
+	"github.com/cqlmq/sycpay"
+	"github.com/cqlmq/sycpay/wechat"
 )
 
 func Micropay() {
@@ -16,10 +16,10 @@ func Micropay() {
 	client := wechat.NewClient("wxdaa2ab9ef87b5497", "1368139502", "GFDS8j98rewnmgl45wHTt980jg543abc", false)
 
 	// 初始化参数Map
-	bm := make(gopay.BodyMap)
-	bm.Set("nonce_str", gopay.GetRandomString(32))
+	bm := make(sycpay.BodyMap)
+	bm.Set("nonce_str", sycpay.GetRandomString(32))
 	bm.Set("body", "扫用户付款码支付")
-	number := gopay.GetRandomString(32)
+	number := sycpay.GetRandomString(32)
 	fmt.Println("out_trade_no:", number)
 	bm.Set("out_trade_no", number)
 	bm.Set("total_fee", 1)
@@ -28,7 +28,7 @@ func Micropay() {
 	bm.Set("sign_type", wechat.SignType_MD5)
 
 	sign := wechat.GetParamSign("wxdaa2ab9ef87b5497", "1368139502", "GFDS8j98rewnmgl45wHTt980jg543abc", bm)
-	//sign, _ := gopay.GetSanBoxParamSign("wxdaa2ab9ef87b5497", "1368139502", "GFDS8j98rewnmgl45wHTt980jg543abc", body)
+	//sign, _ := sycpay.GetSanBoxParamSign("wxdaa2ab9ef87b5497", "1368139502", "GFDS8j98rewnmgl45wHTt980jg543abc", body)
 
 	bm.Set("sign", sign)
 	//请求支付，成功后得到结果

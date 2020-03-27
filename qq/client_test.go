@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/iGoogle-ink/gopay"
+	"github.com/cqlmq/sycpay"
 )
 
 var (
@@ -30,8 +30,8 @@ func TestMain(m *testing.M) {
 }
 
 func TestClient_MicroPay(t *testing.T) {
-	bm := make(gopay.BodyMap)
-	bm.Set("nonce_str", gopay.GetRandomString(32))
+	bm := make(sycpay.BodyMap)
+	bm.Set("nonce_str", sycpay.GetRandomString(32))
 
 	qqRsp, err := client.MicroPay(bm)
 	if err != nil {

@@ -11,19 +11,19 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/iGoogle-ink/gopay"
+	"github.com/cqlmq/sycpay"
 )
 
 // 解析QQ支付异步通知的结果到BodyMap
 //    req：*http.Request
 //    返回参数bm：Notify请求的参数
 //    返回参数err：错误信息
-func ParseNotifyResultToBodyMap(req *http.Request) (bm gopay.BodyMap, err error) {
+func ParseNotifyResultToBodyMap(req *http.Request) (bm sycpay.BodyMap, err error) {
 	bs, err := ioutil.ReadAll(io.LimitReader(req.Body, int64(2<<20))) // default 2MB change the size you want;
 	if err != nil {
 		return nil, fmt.Errorf("ioutil.ReadAll：%w", err)
 	}
-	bm = make(gopay.BodyMap)
+	bm = make(sycpay.BodyMap)
 	if err = xml.Unmarshal(bs, &bm); err != nil {
 		return nil, fmt.Errorf("xml.Unmarshal(%s)：%w", string(bs), err)
 	}
@@ -49,7 +49,7 @@ func ParseNotifyResult(req *http.Request) (notifyReq *NotifyRequest, err error) 
 //    返回参数ok：是否验签通过
 //    返回参数err：错误信息
 func VerifySign(apiKey, signType string, bean interface{}) (ok bool, err error) {
-	if apiKey == gopay.NULL || signType == gopay.NULL {
+	if apiKey == sycpay.NULL || signType == sycpay.NULL {
 		return false, errors.New("apiKey or signType can not null")
 	}
 	if bean == nil {
@@ -57,7 +57,7 @@ func VerifySign(apiKey, signType string, bean interface{}) (ok bool, err error) 
 	}
 	kind := reflect.ValueOf(bean).Kind()
 	if kind == reflect.Map {
-		bm := bean.(gopay.BodyMap)
+		bm := bean.(sycpay.BodyMap)
 		bodySign := bm.Get("sign")
 		bm.Remove("sign")
 		return getReleaseSign(apiKey, signType, bm) == bodySign, nil
@@ -67,7 +67,7 @@ func VerifySign(apiKey, signType string, bean interface{}) (ok bool, err error) 
 	if err != nil {
 		return false, fmt.Errorf("json.Marshal(%s)：%w", string(bs), err)
 	}
-	bm := make(gopay.BodyMap)
+	bm := make(sycpay.BodyMap)
 	if err = json.Unmarshal(bs, &bm); err != nil {
 		return false, fmt.Errorf("json.Marshal(%s)：%w", string(bs), err)
 	}
@@ -87,7 +87,7 @@ func (w *NotifyResponse) ToXmlString() (xmlStr string) {
 	buffer.WriteString("<xml><return_code>")
 	buffer.WriteString(w.ReturnCode)
 	buffer.WriteString("</return_code>")
-	if w.ReturnMsg != gopay.NULL {
+	if w.ReturnMsg != sycpay.NULL {
 		buffer.WriteString("<return_msg>")
 		buffer.WriteString(w.ReturnMsg)
 		buffer.WriteString("</return_msg>")

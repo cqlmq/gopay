@@ -3,8 +3,8 @@ package wechat
 import (
 	"fmt"
 
-	"github.com/iGoogle-ink/gopay"
-	"github.com/iGoogle-ink/gopay/wechat"
+	"github.com/cqlmq/sycpay"
+	"github.com/cqlmq/sycpay/wechat"
 )
 
 func Transfer() {
@@ -22,9 +22,9 @@ func Transfer() {
 	}
 
 	// 初始化参数结构体
-	bm := make(gopay.BodyMap)
-	bm.Set("nonce_str", gopay.GetRandomString(32))
-	bm.Set("partner_trade_no", gopay.GetRandomString(32))
+	bm := make(sycpay.BodyMap)
+	bm.Set("nonce_str", sycpay.GetRandomString(32))
+	bm.Set("partner_trade_no", sycpay.GetRandomString(32))
 	bm.Set("openid", "o0Df70H2Q0fY8JXh1aFPIRyOBgu8")
 	bm.Set("check_name", "FORCE_CHECK") // NO_CHECK：不校验真实姓名 , FORCE_CHECK：强校验真实姓名
 	bm.Set("re_user_name", "付明明")       // 收款用户真实姓名。 如果check_name设置为FORCE_CHECK，则必填用户真实姓名

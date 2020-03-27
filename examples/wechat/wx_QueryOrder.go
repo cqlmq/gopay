@@ -3,8 +3,8 @@ package wechat
 import (
 	"fmt"
 
-	"github.com/iGoogle-ink/gopay"
-	"github.com/iGoogle-ink/gopay/wechat"
+	"github.com/cqlmq/sycpay"
+	"github.com/cqlmq/sycpay/wechat"
 )
 
 func QueryOrder() {
@@ -16,9 +16,9 @@ func QueryOrder() {
 	client := wechat.NewClient("wxdaa2ab9ef87b5497", "1368139502", "GFDS8j98rewnmgl45wHTt980jg543abc", false)
 
 	// 初始化参数结构体
-	bm := make(gopay.BodyMap)
+	bm := make(sycpay.BodyMap)
 	bm.Set("out_trade_no", "GW201908091551421156")
-	bm.Set("nonce_str", gopay.GetRandomString(32))
+	bm.Set("nonce_str", sycpay.GetRandomString(32))
 	bm.Set("sign_type", wechat.SignType_MD5)
 
 	// 请求订单查询，成功后得到结果

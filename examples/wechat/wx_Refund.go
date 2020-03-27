@@ -3,8 +3,8 @@ package wechat
 import (
 	"fmt"
 
-	"github.com/iGoogle-ink/gopay"
-	"github.com/iGoogle-ink/gopay/wechat"
+	"github.com/cqlmq/sycpay"
+	"github.com/cqlmq/sycpay/wechat"
 )
 
 func Refund() {
@@ -16,16 +16,16 @@ func Refund() {
 	client := wechat.NewClient("wxdaa2ab9ef87b5497", "1368139502", "GFDS8j98rewnmgl45wHTt980jg543abc", false)
 
 	// 初始化参数结构体
-	bm := make(gopay.BodyMap)
+	bm := make(sycpay.BodyMap)
 	bm.Set("out_trade_no", "SdZBAqJHBQGKVwb7aMR2mUwC588NG2Sd")
-	bm.Set("nonce_str", gopay.GetRandomString(32))
+	bm.Set("nonce_str", sycpay.GetRandomString(32))
 	bm.Set("sign_type", wechat.SignType_MD5)
-	s := gopay.GetRandomString(64)
+	s := sycpay.GetRandomString(64)
 	fmt.Println("out_refund_no:", s)
 	bm.Set("out_refund_no", s)
 	bm.Set("total_fee", 1)
 	bm.Set("refund_fee", 1)
-	bm.Set("notify_url", "https://www.gopay.ink")
+	bm.Set("notify_url", "https://www.sycpay.ink")
 
 	//请求申请退款（沙箱环境下，证书路径参数可传空）
 	//    body：参数Body

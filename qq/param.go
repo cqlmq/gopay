@@ -14,7 +14,7 @@ import (
 	"io/ioutil"
 	"strings"
 
-	"github.com/iGoogle-ink/gopay"
+	"github.com/cqlmq/sycpay"
 )
 
 // 添加QQ证书 Path 路径
@@ -49,16 +49,16 @@ func (q *Client) AddCertFilePath(certFilePath, keyFilePath, pkcs12FilePath strin
 }
 
 // 生成请求XML的Body体
-func generateXml(bm gopay.BodyMap) (reqXml string) {
+func generateXml(bm sycpay.BodyMap) (reqXml string) {
 	bs, err := xml.Marshal(bm)
 	if err != nil {
-		return gopay.NULL
+		return sycpay.NULL
 	}
 	return string(bs)
 }
 
 // 获取QQ支付正式环境Sign值
-func getReleaseSign(apiKey string, signType string, bm gopay.BodyMap) (sign string) {
+func getReleaseSign(apiKey string, signType string, bm sycpay.BodyMap) (sign string) {
 	var h hash.Hash
 	if signType == SignType_HMAC_SHA256 {
 		h = hmac.New(sha256.New, []byte(apiKey))
@@ -71,7 +71,7 @@ func getReleaseSign(apiKey string, signType string, bm gopay.BodyMap) (sign stri
 
 func (q *Client) addCertConfig(certFilePath, keyFilePath, pkcs12FilePath string) (tlsConfig *tls.Config, err error) {
 
-	if certFilePath == gopay.NULL && keyFilePath == gopay.NULL && pkcs12FilePath == gopay.NULL {
+	if certFilePath == sycpay.NULL && keyFilePath == sycpay.NULL && pkcs12FilePath == sycpay.NULL {
 		q.mu.RLock()
 		defer q.mu.RUnlock()
 		if &q.certificate != nil && q.certPool != nil {
@@ -84,7 +84,7 @@ func (q *Client) addCertConfig(certFilePath, keyFilePath, pkcs12FilePath string)
 		}
 	}
 
-	if certFilePath != gopay.NULL && keyFilePath != gopay.NULL && pkcs12FilePath != gopay.NULL {
+	if certFilePath != sycpay.NULL && keyFilePath != sycpay.NULL && pkcs12FilePath != sycpay.NULL {
 		pkcs, err := ioutil.ReadFile(pkcs12FilePath)
 		if err != nil {
 			return nil, fmt.Errorf("ioutil.ReadFile：%w", err)

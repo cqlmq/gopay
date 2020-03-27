@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/iGoogle-ink/gopay"
+	"github.com/cqlmq/sycpay"
 )
 
 var (
@@ -25,8 +25,8 @@ func TestMain(m *testing.M) {
 	// 配置公共参数
 	client.SetCharset("utf-8").
 		SetSignType(RSA2)
-	// SetReturnUrl("https://www.gopay.ink").
-	// SetNotifyUrl("https://www.gopay.ink")
+	// SetReturnUrl("https://www.sycpay.ink").
+	// SetNotifyUrl("https://www.sycpay.ink")
 
 	// err := client.SetCertSnByPath("cert/appCertPublicKey.crt", "cert/alipayRootCert.crt", "cert/alipayCertPublicKey_RSA2.crt")
 	// if err != nil {
@@ -39,9 +39,9 @@ func TestMain(m *testing.M) {
 
 func TestClient_TradePrecreate(t *testing.T) {
 	// 请求参数
-	bm := make(gopay.BodyMap)
+	bm := make(sycpay.BodyMap)
 	bm.Set("subject", "预创建创建订单")
-	bm.Set("out_trade_no", gopay.GetRandomString(32))
+	bm.Set("out_trade_no", sycpay.GetRandomString(32))
 	bm.Set("total_amount", "100")
 
 	// 创建订单
@@ -57,7 +57,7 @@ func TestClient_TradePrecreate(t *testing.T) {
 
 func TestClient_TradeCreate(t *testing.T) {
 	// 请求参数
-	bm := make(gopay.BodyMap)
+	bm := make(sycpay.BodyMap)
 	bm.Set("subject", "创建订单")
 	bm.Set("buyer_id", "2088802095984694")
 	bm.Set("out_trade_no", "GZ201901301040355709")
@@ -75,7 +75,7 @@ func TestClient_TradeCreate(t *testing.T) {
 
 func TestClient_TradeAppPay(t *testing.T) {
 	// 请求参数
-	bm := make(gopay.BodyMap)
+	bm := make(sycpay.BodyMap)
 	bm.Set("subject", "测试APP支付")
 	bm.Set("out_trade_no", "GZ201901301040355706100469")
 	bm.Set("total_amount", "1.00")
@@ -91,7 +91,7 @@ func TestClient_TradeAppPay(t *testing.T) {
 
 func TestClient_TradeCancel(t *testing.T) {
 	// 请求参数
-	bm := make(gopay.BodyMap)
+	bm := make(sycpay.BodyMap)
 	bm.Set("out_trade_no", "GZ201909081743431443")
 
 	// 撤销支付订单
@@ -105,7 +105,7 @@ func TestClient_TradeCancel(t *testing.T) {
 
 func TestClient_TradeClose(t *testing.T) {
 	// 请求参数
-	bm := make(gopay.BodyMap)
+	bm := make(sycpay.BodyMap)
 	bm.Set("out_trade_no", "GZ201909081743431443")
 
 	// 条码支付
@@ -119,7 +119,7 @@ func TestClient_TradeClose(t *testing.T) {
 
 func TestClient_TradePay(t *testing.T) {
 	// 请求参数
-	bm := make(gopay.BodyMap)
+	bm := make(sycpay.BodyMap)
 	bm.Set("subject", "条码支付")
 	bm.Set("scene", "bar_code")
 	bm.Set("auth_code", "286248566432274952")
@@ -145,7 +145,7 @@ func TestClient_TradePay(t *testing.T) {
 
 func TestClient_TradeQuery(t *testing.T) {
 	// 请求参数
-	bm := make(gopay.BodyMap)
+	bm := make(sycpay.BodyMap)
 	bm.Set("out_trade_no", "GZ201909081743431443")
 
 	// 查询订单
@@ -159,10 +159,10 @@ func TestClient_TradeQuery(t *testing.T) {
 
 func TestClient_TradeWapPay(t *testing.T) {
 	// 请求参数
-	bm := make(gopay.BodyMap)
+	bm := make(sycpay.BodyMap)
 	bm.Set("subject", "手机网站测试支付")
 	bm.Set("out_trade_no", "GZ201909081743431443")
-	bm.Set("quit_url", "https://www.gopay.ink")
+	bm.Set("quit_url", "https://www.sycpay.ink")
 	bm.Set("total_amount", "100.00")
 	bm.Set("product_code", "QUICK_WAP_WAY")
 
@@ -177,7 +177,7 @@ func TestClient_TradeWapPay(t *testing.T) {
 
 func TestClient_TradePagePay(t *testing.T) {
 	// 请求参数
-	bm := make(gopay.BodyMap)
+	bm := make(sycpay.BodyMap)
 	bm.Set("subject", "网站测试支付")
 	bm.Set("out_trade_no", "GZ201909081743431443")
 	bm.Set("total_amount", "88.88")
@@ -194,7 +194,7 @@ func TestClient_TradePagePay(t *testing.T) {
 
 func TestClient_TradeRefund(t *testing.T) {
 	// 请求参数
-	body := make(gopay.BodyMap)
+	body := make(sycpay.BodyMap)
 	body.Set("out_trade_no", "GZ201909081743431443")
 	body.Set("refund_amount", "5")
 	body.Set("refund_reason", "测试退款")
@@ -210,10 +210,10 @@ func TestClient_TradeRefund(t *testing.T) {
 
 func TestClient_TradePageRefund(t *testing.T) {
 	// 请求参数
-	bm := make(gopay.BodyMap)
+	bm := make(sycpay.BodyMap)
 	bm.Set("out_trade_no", "GZ201909081743431443")
 	bm.Set("refund_amount", "5")
-	bm.Set("out_request_no", gopay.GetRandomString(32))
+	bm.Set("out_request_no", sycpay.GetRandomString(32))
 
 	// 发起退款请求
 	aliRsp, err := client.TradePageRefund(bm)
@@ -226,7 +226,7 @@ func TestClient_TradePageRefund(t *testing.T) {
 
 func TestClient_SystemOauthToken(t *testing.T) {
 	// 请求参数
-	bm := make(gopay.BodyMap)
+	bm := make(sycpay.BodyMap)
 	bm.Set("grant_type", "authorization_code")
 	bm.Set("code", "3a06216ac8f84b8c93507bb9774bWX11")
 
@@ -243,7 +243,7 @@ func TestClient_SystemOauthToken(t *testing.T) {
 
 func TestClient_TradeOrderSettle(t *testing.T) {
 	// 请求参数
-	bm := make(gopay.BodyMap)
+	bm := make(sycpay.BodyMap)
 	bm.Set("out_request_no", "201907301518083384")
 	bm.Set("trade_no", "2019072522001484690549776067")
 
@@ -264,7 +264,7 @@ func TestClient_TradeOrderSettle(t *testing.T) {
 
 func TestClient_OpenAuthTokenApp(t *testing.T) {
 	// 请求参数
-	bm := make(gopay.BodyMap)
+	bm := make(sycpay.BodyMap)
 	bm.Set("grant_type", "authorization_code")
 	bm.Set("code", "866185490c4e40efa9f71efea6766X02")
 
@@ -279,7 +279,7 @@ func TestClient_OpenAuthTokenApp(t *testing.T) {
 
 func TestClient_TradeFastPayRefundQuery(t *testing.T) {
 	// 请求参数
-	bm := make(gopay.BodyMap)
+	bm := make(sycpay.BodyMap)
 	bm.Set("out_trade_no", "GZ201909081743431443")
 	bm.Set("out_request_no", "GZ201909081743431443")
 
@@ -294,8 +294,8 @@ func TestClient_TradeFastPayRefundQuery(t *testing.T) {
 
 func TestClient_FundTransToaccountTransfer(t *testing.T) {
 	// 请求参数
-	bm := make(gopay.BodyMap)
-	bm.Set("out_biz_no", gopay.GetRandomString(32))
+	bm := make(sycpay.BodyMap)
+	bm.Set("out_biz_no", sycpay.GetRandomString(32))
 	bm.Set("payee_type", "ALIPAY_LOGONID")
 	bm.Set("payee_account", "otmdfd2378@sandbox.com")
 	bm.Set("amount", "1000")
@@ -314,7 +314,7 @@ func TestClient_FundTransToaccountTransfer(t *testing.T) {
 
 func TestClient_UserCertifyOpenInit(t *testing.T) {
 	// 请求参数
-	bm := make(gopay.BodyMap)
+	bm := make(sycpay.BodyMap)
 	bm.Set("outer_order_no", "ZGYD201809132323000001234")
 	// 认证场景码：FACE：多因子人脸认证，CERT_PHOTO：多因子证照认证，CERT_PHOTO_FACE ：多因子证照和人脸认证，SMART_FACE：多因子快捷认证
 	bm.Set("biz_code", "FACE")
@@ -327,7 +327,7 @@ func TestClient_UserCertifyOpenInit(t *testing.T) {
 	bm.Set("identity_param", identity)
 	// 商户个性化配置，格式为json
 	merchant := make(map[string]string)
-	merchant["return_url"] = "https://www.gopay.ink"
+	merchant["return_url"] = "https://www.sycpay.ink"
 	bm.Set("merchant_config", merchant)
 
 	// 发起请求
@@ -341,7 +341,7 @@ func TestClient_UserCertifyOpenInit(t *testing.T) {
 
 func TestClient_UserCertifyOpenCertify(t *testing.T) {
 	// 请求参数
-	bm := make(gopay.BodyMap)
+	bm := make(sycpay.BodyMap)
 	// 本次申请操作的唯一标识，由开放认证初始化接口调用后生成，后续的操作都需要用到
 	bm.Set("certify_id", "53827f9d085b3ce43938c6e5915b4729")
 
@@ -356,7 +356,7 @@ func TestClient_UserCertifyOpenCertify(t *testing.T) {
 
 func TestClient_UserCertifyOpenQuery(t *testing.T) {
 	// 请求参数
-	bm := make(gopay.BodyMap)
+	bm := make(sycpay.BodyMap)
 	// 本次申请操作的唯一标识，由开放认证初始化接口调用后生成，后续的操作都需要用到
 	bm.Set("certify_id", "OC201809253000000393900404029253")
 
@@ -372,7 +372,7 @@ func TestClient_UserCertifyOpenQuery(t *testing.T) {
 
 func TestClient_UserInfoAuth(t *testing.T) {
 	// 请求参数
-	bm := make(gopay.BodyMap)
+	bm := make(sycpay.BodyMap)
 	// 接口权限值，目前只支持auth_user和auth_base两个值。具体说明看文档介绍
 	bm.Set("scopes", []string{"auth_user"})
 	bm.Set("state", "init")
@@ -406,8 +406,8 @@ func TestClient_UserInfoShare(t *testing.T) {
 
 func TestClient_ZhimaCreditScoreGet(t *testing.T) {
 	// 请求参数
-	body := make(gopay.BodyMap)
-	body.Set("transaction_id", gopay.GetRandomString(48))
+	body := make(sycpay.BodyMap)
+	body.Set("transaction_id", sycpay.GetRandomString(48))
 	body.Set("product_code", "w1010100100000000001")
 
 	// 芝麻分
@@ -437,7 +437,7 @@ func TestVerifySign(t *testing.T) {
 
 	publicKey := "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAp8gueNlkbiDidz6FBQEBpqoRgH8h7JtsPtYW0nzAqy1MME4mFnDSMfSKlreUomS3a55gmBopL1eF4/Km/dEnaL5tCY9+24SKn1D4iyls+lvz/ZjvUjVwxoUYBh8kkcxMZSDeDz8//o+9qZTrICVP2a4sBB8T0XmU4gxfw8FsmtoomBH1nLk3AO7wgRN2a3+SRSAmxrhIGDmF1lljSlhY32eJpJ2TZQKaWNW+7yDBU/0Wt3kQVY84vr14yYagnSCiIfqyVFqePayRtmVJDr5qvSXr51tdqs2zKZCu+26X7JAF4BSsaq4gmY5DmDTm4TohCnBduI1+bPGD+igVmtl05wIDAQAB"
 
-	//bm := make(gopay.BodyMap)
+	//bm := make(sycpay.BodyMap)
 	//bm.Set("sign", "f19WZ3rko3cVpSG3uEEJF0eb4DuZVLt4/GXnNw9qg8iHUsJLkav0V91R5SSTDhW5lgkn3Xhq7TkFRJiDXdVXMu3XUlsONArp3Iu4tXagYJWt9jbcnc2/l29VYDXPLNcs7BXEWFEaCZLutQY2U82AumEwSc1XBKtsLC4mVX3M3f/ExFQHWklJEBHArYBGe4535uFRlsT2fk6WVuX8CuYZatCrVF1o02xMS5aD29eICPkmin/h87OcTbE1syktyCU1WVgcypagUdGGPTF0SVDFf7FRov7+w7fiCGGGL10tNlK/MLzcewtN2dyGF6RLUX3m+HQ7sNEk2wylRXLNUFig==")
 	//bm.Set("seller_email", "imonkey@100tal.com")
 	//bm.Set("sign_type", RSA2)
@@ -505,7 +505,7 @@ func TestVerifySign(t *testing.T) {
 
 func TestVerifySignWithCert(t *testing.T) {
 	// 测试，假数据，无法验签通过
-	bm := make(gopay.BodyMap)
+	bm := make(sycpay.BodyMap)
 	bm.Set("sign", "kPbQIjX+xQc8F0/A6/AocELIjhhZnGbcBN6G4MM/HmfWL4ZiHM6fWl5NQhzXJusaklZ1LFuMo+lHQUELAYeugH8LYFvxnNajOvZhuxNFbN2LhF0l/KL8ANtj8oyPM4NN7Qft2kWJTDJUpQOzCzNnV9hDxh5AaT9FPqRS6ZKxnzM=")
 	bm.Set("sign_type", RSA2)
 	bm.Set("total_amount", "2.00")

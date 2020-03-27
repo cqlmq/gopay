@@ -1,33 +1,33 @@
 
-<div align=center><img width="220" height="220" alt="Logo was Loading Faild!" src="https://raw.githubusercontent.com/iGoogle-ink/gopay/master/logo.png"/></div>
+<div align=center><img width="220" height="220" alt="Logo was Loading Faild!" src="https://raw.githubusercontent.com/cqlmq/sycpay/master/logo.png"/></div>
 
 # GoPay
 
 QQ、微信、支付宝的Golang版本SDK
 
 [![Golang](https://img.shields.io/badge/golang-1.13+-brightgreen.svg)](https://golang.org)
-[![Godoc](https://img.shields.io/badge/godoc-reference-informational.svg)](https://godoc.org/github.com/iGoogle-ink/gopay)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/iGoogle-ink/gopay)
-![Travis (.org)](https://img.shields.io/travis/iGoogle-ink/gopay)
-![License](https://img.shields.io/github/license/iGoogle-ink/gopay)
+[![Godoc](https://img.shields.io/badge/godoc-reference-informational.svg)](https://godoc.org/github.com/cqlmq/sycpay)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/cqlmq/sycpay)
+![Travis (.org)](https://img.shields.io/travis/cqlmq/sycpay)
+![License](https://img.shields.io/github/license/cqlmq/sycpay)
 
 # 一、安装
 
 ```bash
-$ go get github.com/iGoogle-ink/gopay
+$ go get github.com/cqlmq/sycpay
 ```
 
 * #### 查看 GoPay 版本
-    * [版本更新记录](https://github.com/iGoogle-ink/gopay/blob/master/release_note.txt)
+    * [版本更新记录](https://github.com/cqlmq/sycpay/blob/master/release_note.txt)
 ```go
 import (
     "fmt"
 
-    "github.com/iGoogle-ink/gopay"
+    "github.com/cqlmq/sycpay"
 )
 
 func main() {
-    fmt.Println("GoPay Version: ", gopay.Version)
+    fmt.Println("GoPay Version: ", sycpay.Version)
 }
 ```
 
@@ -152,15 +152,15 @@ func main() {
 
 # 二、文档说明
 
-* [GoDoc](https://godoc.org/github.com/iGoogle-ink/gopay)
+* [GoDoc](https://godoc.org/github.com/cqlmq/sycpay)
 * QQ支付 使用方法请参考微信的
 * 所有方法，如有问题，请仔细查看 wechat_client_test.go、alipay_client_test.go 或 examples
-* 有问题请加QQ群（加群验证答案：gopay），微信加好友拉群（微信群比较活跃）。在此，非常感谢那些加群后，提出意见和反馈问题的同志们！
+* 有问题请加QQ群（加群验证答案：sycpay），微信加好友拉群（微信群比较活跃）。在此，非常感谢那些加群后，提出意见和反馈问题的同志们！
 
 QQ群：
-<img width="226" height="300" src="https://raw.githubusercontent.com/iGoogle-ink/gopay/master/qq_gopay.png"/>
+<img width="226" height="300" src="https://raw.githubusercontent.com/cqlmq/sycpay/master/qq_gopay.png"/>
 加微信拉群：
-<img width="226" height="300" src="https://raw.githubusercontent.com/iGoogle-ink/gopay/master/wechat_jerry.png"/>
+<img width="226" height="300" src="https://raw.githubusercontent.com/cqlmq/sycpay/master/wechat_jerry.png"/>
 
 ---
 
@@ -171,7 +171,7 @@ QQ群：
 微信官方文档：[官方文档](https://pay.weixin.qq.com/wiki/doc/api/index.html)
 ```go
 import (
-	"github.com/iGoogle-ink/gopay/wechat"
+	"github.com/cqlmq/sycpay/wechat"
 )
 
 // 初始化微信客户端
@@ -182,11 +182,11 @@ import (
 client := wechat.NewClient("wxdaa2ab9ef87b5497", mchId, apiKey, false)
 
 // 设置国家：不设置默认 中国国内
-//    gopay.China：中国国内
-//    gopay.China2：中国国内备用
-//    gopay.SoutheastAsia：东南亚
-//    gopay.Other：其他国家
-client.SetCountry(gopay.China)
+//    sycpay.China：中国国内
+//    sycpay.China2：中国国内备用
+//    sycpay.SoutheastAsia：东南亚
+//    sycpay.Other：其他国家
+client.SetCountry(sycpay.China)
 
 // 添加微信证书 Path 路径
 //    certFilePath：apiclient_cert.pem 路径
@@ -207,7 +207,7 @@ client.AddCertFilePath()
 
 ```go
 import (
-	"github.com/iGoogle-ink/gopay/alipay"
+	"github.com/cqlmq/sycpay/alipay"
 )
 
 // 初始化支付宝客户端
@@ -225,8 +225,8 @@ client.SetLocation().                       // 设置时区，不设置或出错
     SetAliPayPublicCertSN().                // 设置支付宝公钥证书SN，通过 alipay.GetCertSN() 获取
     SetCharset("utf-8").                    // 设置字符编码，不设置默认 utf-8
     SetSignType(alipay.RSA2).               // 设置签名类型，不设置默认 RSA2
-    SetReturnUrl("https://www.gopay.ink").  // 设置返回URL
-    SetNotifyUrl("https://www.gopay.ink").  // 设置异步通知URL
+    SetReturnUrl("https://www.sycpay.ink").  // 设置返回URL
+    SetNotifyUrl("https://www.sycpay.ink").  // 设置异步通知URL
     SetAppAuthToken().                      // 设置第三方应用授权
     SetAuthToken()                          // 设置个人信息授权
 
@@ -240,26 +240,26 @@ err := client.SetCertSnByPath("appCertPublicKey.crt", "alipayRootCert.crt", "ali
 具体参数请根据不同接口查看：[微信支付接口文档](https://pay.weixin.qq.com/wiki/doc/api/index.html)
 ```go
 import (
-	"github.com/iGoogle-ink/gopay/wechat"
+	"github.com/cqlmq/sycpay/wechat"
 )
 
 // 初始化 BodyMap
-bm := make(gopay.BodyMap)
-bm.Set("nonce_str", gopay.GetRandomString(32))
+bm := make(sycpay.BodyMap)
+bm.Set("nonce_str", sycpay.GetRandomString(32))
 bm.Set("body", "小程序测试支付")
 bm.Set("out_trade_no", number)
 bm.Set("total_fee", 1)
 bm.Set("spbill_create_ip", "127.0.0.1")
-bm.Set("notify_url", "http://www.gopay.ink")
-bm.Set("trade_type", gopay.TradeType_Mini)
+bm.Set("notify_url", "http://www.sycpay.ink")
+bm.Set("trade_type", sycpay.TradeType_Mini)
 bm.Set("device_info", "WEB")
-bm.Set("sign_type", gopay.SignType_MD5)
+bm.Set("sign_type", sycpay.SignType_MD5)
 bm.Set("openid", "o0Df70H2Q0fY8JXh1aFPIRyOBgu8")
 
 // 嵌套json格式数据（例如：H5支付的 scene_info 参数）
 h5Info := make(map[string]string)
 h5Info["type"] = "Wap"
-h5Info["wap_url"] = "http://www.gopay.ink"
+h5Info["wap_url"] = "http://www.sycpay.ink"
 h5Info["wap_name"] = "H5测试支付"
 
 sceneInfo := make(map[string]map[string]string)
@@ -279,10 +279,10 @@ bm.Set("sign", sign)
 具体参数请根据不同接口查看：[支付宝支付API接口文档](https://docs.open.alipay.com/api_1/alipay.trade.wap.pay)
 ```go
 // 初始化 BodyMap
-bm := make(gopay.BodyMap)
+bm := make(sycpay.BodyMap)
 bm.Set("subject", "手机网站测试支付")
 bm.Set("out_trade_no", "GZ201901301040355703")
-bm.Set("quit_url", "https://www.gopay.ink")
+bm.Set("quit_url", "https://www.sycpay.ink")
 bm.Set("total_amount", "100.00")
 bm.Set("product_code", "QUICK_WAP_WAY")
 ```
@@ -319,7 +319,7 @@ payParam, err := client.TradeAppPay(bm)
 aliRsp, err := client.TradePay(bm)
 
 // 支付宝小程序支付时 buyer_id 为必传参数，需要提前获取，获取方法如下两种
-//    1、gopay.SystemOauthToken()     返回取值：rsp.SystemOauthTokenResponse.UserId
+//    1、sycpay.SystemOauthToken()     返回取值：rsp.SystemOauthTokenResponse.UserId
 //    2、client.SystemOauthToken()    返回取值：aliRsp.SystemOauthTokenResponse.UserId
 aliRsp, err := client.TradeCreate(bm)
 
@@ -352,7 +352,7 @@ APP支付官方文档：[APP端调起支付的参数列表文档](https://pay.we
 微信内H5支付官方文档：[微信内H5支付文档](https://pay.weixin.qq.com/wiki/doc/api/external/jsapi.php?chapter=7_7&index=6)
 ```go
 import (
-	"github.com/iGoogle-ink/gopay/wechat"
+	"github.com/cqlmq/sycpay/wechat"
 )
 
 // ====微信小程序 paySign====
@@ -404,8 +404,8 @@ paySign := wechat.GetH5PaySign(AppID, wxRsp.NonceStr, packages, wechat.SignType_
 * #### 微信
 ```go
 import (
-	"github.com/iGoogle-ink/gopay"
-	"github.com/iGoogle-ink/gopay/wechat"
+	"github.com/cqlmq/sycpay"
+	"github.com/cqlmq/sycpay/wechat"
 )
 
 // ====同步返回参数验签Sign====
@@ -440,8 +440,8 @@ refundNotify, err := wechat.DecryptRefundNotifyReqInfo(notifyReq.ReqInfo, apiKey
 
 // ==异步通知，返回给微信平台的信息==
 rsp := new(wechat.NotifyResponse) // 回复微信的数据
-rsp.ReturnCode = gopay.SUCCESS
-rsp.ReturnMsg = gopay.OK
+rsp.ReturnCode = sycpay.SUCCESS
+rsp.ReturnMsg = sycpay.OK
 return c.String(http.StatusOK, rsp.ToXmlString())   // 此写法是 echo 框架返回客户端数据的写法
 ```
 
@@ -452,7 +452,7 @@ return c.String(http.StatusOK, rsp.ToXmlString())   // 此写法是 echo 框架�
 支付宝支付后的同步/异步通知验签文档：[支付结果通知](https://docs.open.alipay.com/200/106120)
 ```go
 import (
-	"github.com/iGoogle-ink/gopay/alipay"
+	"github.com/cqlmq/sycpay/alipay"
 )
 
 // ====同步返回参数验签Sign====
@@ -492,7 +492,7 @@ button按钮获取手机号码：[button组件文档](https://developers.weixin.
 微信解密算法文档：[解密算法文档](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/signature.html)
 ```go
 import (
-	"github.com/iGoogle-ink/gopay/wechat"
+	"github.com/cqlmq/sycpay/wechat"
 )
 
 // 获取微信小程序用户的OpenId、SessionKey、UnionId
@@ -511,7 +511,7 @@ phone := new(wechat.UserPhone)
 // 解密开放数据
 //    encryptedData：包括敏感数据在内的完整用户信息的加密数据，小程序获取到
 //    iv：加密算法的初始向量，小程序获取到
-//    sessionKey：会话密钥，通过 gopay.Code2Session() 方法获取到
+//    sessionKey：会话密钥，通过 sycpay.Code2Session() 方法获取到
 //    beanPtr：需要解析到的结构体指针，操作完后，声明的结构体会被赋值
 err := wechat.DecryptOpenDataToStruct(data, iv, session, phone)
 fmt.Println(*phone)
@@ -550,7 +550,7 @@ fmt.Println("WeChatUserPhone:", bm)
 支付宝加解密文档：[AES配置文档](https://docs.alipay.com/mini/introduce/aes)，[AES加解密文档](https://docs.open.alipay.com/common/104567)
 ```go
 import (
-	"github.com/iGoogle-ink/gopay/alipay"
+	"github.com/cqlmq/sycpay/alipay"
 )
 
 // 换取授权访问令牌（默认使用utf-8，RSA2）
@@ -573,9 +573,9 @@ fmt.Println(*phone)
 
 ## 开源不易，讲究的朋友可以给个赞赏
 <font color='#0088ff'>微信：</font>
-<img width="200" height="200" src="https://raw.githubusercontent.com/iGoogle-ink/gopay/master/zanshang_wx.png"/>
+<img width="200" height="200" src="https://raw.githubusercontent.com/cqlmq/sycpay/master/zanshang_wx.png"/>
 <font color='#0088ff'>支付宝：</font>
-<img width="200" height="200" src="https://raw.githubusercontent.com/iGoogle-ink/gopay/master/zanshang_zfb.png"/>
+<img width="200" height="200" src="https://raw.githubusercontent.com/cqlmq/sycpay/master/zanshang_zfb.png"/>
 
 ## License
 ```

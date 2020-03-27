@@ -14,7 +14,7 @@ import (
 	"io/ioutil"
 	"strings"
 
-	"github.com/iGoogle-ink/gopay"
+	"github.com/cqlmq/sycpay"
 )
 
 type Country int
@@ -73,7 +73,7 @@ func (w *Client) AddCertFilePath(certFilePath, keyFilePath, pkcs12FilePath strin
 
 func (w *Client) addCertConfig(certFilePath, keyFilePath, pkcs12FilePath string) (tlsConfig *tls.Config, err error) {
 
-	if certFilePath == gopay.NULL && keyFilePath == gopay.NULL && pkcs12FilePath == gopay.NULL {
+	if certFilePath == sycpay.NULL && keyFilePath == sycpay.NULL && pkcs12FilePath == sycpay.NULL {
 		w.mu.RLock()
 		defer w.mu.RUnlock()
 		if &w.certificate != nil && w.certPool != nil {
@@ -86,7 +86,7 @@ func (w *Client) addCertConfig(certFilePath, keyFilePath, pkcs12FilePath string)
 		}
 	}
 
-	if certFilePath != gopay.NULL && keyFilePath != gopay.NULL && pkcs12FilePath != gopay.NULL {
+	if certFilePath != sycpay.NULL && keyFilePath != sycpay.NULL && pkcs12FilePath != sycpay.NULL {
 		cert, err := ioutil.ReadFile(certFilePath)
 		if err != nil {
 			return nil, fmt.Errorf("ioutil.ReadFile：%w", err)
@@ -116,7 +116,7 @@ func (w *Client) addCertConfig(certFilePath, keyFilePath, pkcs12FilePath string)
 }
 
 // 获取微信支付正式环境Sign值
-func getReleaseSign(apiKey string, signType string, bm gopay.BodyMap) (sign string) {
+func getReleaseSign(apiKey string, signType string, bm sycpay.BodyMap) (sign string) {
 	var h hash.Hash
 	if signType == SignType_HMAC_SHA256 {
 		h = hmac.New(sha256.New, []byte(apiKey))
@@ -128,12 +128,12 @@ func getReleaseSign(apiKey string, signType string, bm gopay.BodyMap) (sign stri
 }
 
 // 获取微信支付沙箱环境Sign值
-func getSignBoxSign(mchId, apiKey string, bm gopay.BodyMap) (sign string, err error) {
+func getSignBoxSign(mchId, apiKey string, bm sycpay.BodyMap) (sign string, err error) {
 	var (
 		sandBoxApiKey string
 		h             hash.Hash
 	)
-	if sandBoxApiKey, err = getSanBoxKey(mchId, gopay.GetRandomString(32), apiKey, SignType_MD5); err != nil {
+	if sandBoxApiKey, err = getSanBoxKey(mchId, sycpay.GetRandomString(32), apiKey, SignType_MD5); err != nil {
 		return
 	}
 	h = md5.New()
@@ -144,7 +144,7 @@ func getSignBoxSign(mchId, apiKey string, bm gopay.BodyMap) (sign string, err er
 
 // 从微信提供的接口获取：SandboxSignKey
 func getSanBoxKey(mchId, nonceStr, apiKey, signType string) (key string, err error) {
-	bm := make(gopay.BodyMap)
+	bm := make(sycpay.BodyMap)
 	bm.Set("mch_id", mchId)
 	bm.Set("nonce_str", nonceStr)
 	//沙箱环境：获取沙箱环境ApiKey
@@ -156,27 +156,27 @@ func getSanBoxKey(mchId, nonceStr, apiKey, signType string) (key string, err err
 
 // 从微信提供的接口获取：SandboxSignKey
 func getSanBoxSignKey(mchId, nonceStr, sign string) (key string, err error) {
-	reqs := make(gopay.BodyMap)
+	reqs := make(sycpay.BodyMap)
 	reqs.Set("mch_id", mchId)
 	reqs.Set("nonce_str", nonceStr)
 	reqs.Set("sign", sign)
 
 	keyResponse := new(getSignKeyResponse)
-	_, errs := gopay.NewHttpClient().Type(gopay.TypeXML).Post(sandboxGetSignKey).SendString(generateXml(reqs)).EndStruct(keyResponse)
+	_, errs := sycpay.NewHttpClient().Type(sycpay.TypeXML).Post(sandboxGetSignKey).SendString(generateXml(reqs)).EndStruct(keyResponse)
 	if len(errs) > 0 {
-		return gopay.NULL, errs[0]
+		return sycpay.NULL, errs[0]
 	}
 	if keyResponse.ReturnCode == "FAIL" {
-		return gopay.NULL, errors.New(keyResponse.ReturnMsg)
+		return sycpay.NULL, errors.New(keyResponse.ReturnMsg)
 	}
 	return keyResponse.SandboxSignkey, nil
 }
 
 // 生成请求XML的Body体
-func generateXml(bm gopay.BodyMap) (reqXml string) {
+func generateXml(bm sycpay.BodyMap) (reqXml string) {
 	bs, err := xml.Marshal(bm)
 	if err != nil {
-		return gopay.NULL
+		return sycpay.NULL
 	}
 	return string(bs)
 }

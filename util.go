@@ -1,4 +1,4 @@
-package gopay
+package sycpay
 
 import (
 	"math/rand"

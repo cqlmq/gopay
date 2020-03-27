@@ -3,8 +3,8 @@ package alipay
 import (
 	"fmt"
 
-	"github.com/iGoogle-ink/gopay"
-	"github.com/iGoogle-ink/gopay/alipay"
+	"github.com/cqlmq/sycpay"
+	"github.com/cqlmq/sycpay/alipay"
 )
 
 func OpenAuthTokenApp() {
@@ -21,7 +21,7 @@ func OpenAuthTokenApp() {
 		SetPrivateKeyType(alipay.PKCS1)
 
 	//请求参数
-	body := make(gopay.BodyMap)
+	body := make(sycpay.BodyMap)
 	body.Set("grant_type", "authorization_code")
 	body.Set("code", "866185490c4e40efa9f71efea6766X02")
 	//发起请求

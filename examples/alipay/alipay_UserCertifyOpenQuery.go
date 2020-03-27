@@ -3,8 +3,8 @@ package alipay
 import (
 	"fmt"
 
-	"github.com/iGoogle-ink/gopay"
-	"github.com/iGoogle-ink/gopay/alipay"
+	"github.com/cqlmq/sycpay"
+	"github.com/cqlmq/sycpay/alipay"
 )
 
 func UserCertifyOpenQuery() {
@@ -21,7 +21,7 @@ func UserCertifyOpenQuery() {
 		SetPrivateKeyType(alipay.PKCS1)
 
 	// 请求参数
-	bm := make(gopay.BodyMap)
+	bm := make(sycpay.BodyMap)
 	// 本次申请操作的唯一标识，由开放认证初始化接口调用后生成，后续的操作都需要用到
 	bm.Set("certify_id", "OC201809253000000393900404029253")
 

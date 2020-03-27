@@ -3,8 +3,8 @@ package alipay
 import (
 	"fmt"
 
-	"github.com/iGoogle-ink/gopay"
-	"github.com/iGoogle-ink/gopay/alipay"
+	"github.com/cqlmq/sycpay"
+	"github.com/cqlmq/sycpay/alipay"
 )
 
 func TradeQuery() {
@@ -22,7 +22,7 @@ func TradeQuery() {
 		SetAppAuthToken("201908BB03f542de8ecc42b985900f5080407abc")
 
 	//请求参数
-	body := make(gopay.BodyMap)
+	body := make(sycpay.BodyMap)
 	body.Set("out_trade_no", "GZ201909081743431443")
 
 	//查询订单

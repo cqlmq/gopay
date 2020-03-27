@@ -3,8 +3,8 @@ package alipay
 import (
 	"fmt"
 
-	"github.com/iGoogle-ink/gopay"
-	"github.com/iGoogle-ink/gopay/alipay"
+	"github.com/cqlmq/sycpay"
+	"github.com/cqlmq/sycpay/alipay"
 )
 
 func FundTransToaccountTransfer() {
@@ -20,8 +20,8 @@ func FundTransToaccountTransfer() {
 		SetPrivateKeyType(alipay.PKCS1)
 
 	//请求参数
-	body := make(gopay.BodyMap)
-	out_biz_no := gopay.GetRandomString(32)
+	body := make(sycpay.BodyMap)
+	out_biz_no := sycpay.GetRandomString(32)
 	body.Set("out_biz_no", out_biz_no)
 	body.Set("payee_type", "ALIPAY_LOGONID")
 	body.Set("payee_account", "otmdfd2378@sandbox.com")

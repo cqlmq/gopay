@@ -3,8 +3,8 @@ package alipay
 import (
 	"fmt"
 
-	"github.com/iGoogle-ink/gopay"
-	"github.com/iGoogle-ink/gopay/alipay"
+	"github.com/cqlmq/sycpay"
+	"github.com/cqlmq/sycpay/alipay"
 )
 
 func TradeOrderSettle() {
@@ -20,7 +20,7 @@ func TradeOrderSettle() {
 		SetPrivateKeyType(alipay.PKCS1)
 
 	//请求参数
-	body := make(gopay.BodyMap)
+	body := make(sycpay.BodyMap)
 	body.Set("out_request_no", "201907301518083384")
 	body.Set("trade_no", "2019072522001484690549776067")
 

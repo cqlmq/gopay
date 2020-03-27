@@ -3,8 +3,8 @@ package alipay
 import (
 	"fmt"
 
-	"github.com/iGoogle-ink/gopay"
-	"github.com/iGoogle-ink/gopay/alipay"
+	"github.com/cqlmq/sycpay"
+	"github.com/cqlmq/sycpay/alipay"
 )
 
 func UserInfoAuth() {
@@ -21,7 +21,7 @@ func UserInfoAuth() {
 		SetPrivateKeyType(alipay.PKCS1)
 
 	// 请求参数
-	bm := make(gopay.BodyMap)
+	bm := make(sycpay.BodyMap)
 	// 接口权限值，目前只支持auth_user和auth_base两个值。具体说明看文档介绍
 	bm.Set("scopes", []string{"auth_user"})
 	bm.Set("state", "init")

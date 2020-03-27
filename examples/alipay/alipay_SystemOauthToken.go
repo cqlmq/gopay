@@ -3,8 +3,8 @@ package alipay
 import (
 	"fmt"
 
-	"github.com/iGoogle-ink/gopay"
-	"github.com/iGoogle-ink/gopay/alipay"
+	"github.com/cqlmq/sycpay"
+	"github.com/cqlmq/sycpay/alipay"
 )
 
 func SystemOauthToken() {
@@ -18,10 +18,10 @@ func SystemOauthToken() {
 	client.SetCharset("utf-8").
 		SetSignType(alipay.RSA2).
 		SetPrivateKeyType(alipay.PKCS1).
-		SetNotifyUrl("https://www.gopay.ink")
+		SetNotifyUrl("https://www.sycpay.ink")
 
 	//请求参数
-	body := make(gopay.BodyMap)
+	body := make(sycpay.BodyMap)
 	body.Set("grant_type", "authorization_code")
 	body.Set("code", "3a06216ac8f84b8c93507bb9774bWX11")
 
@@ -36,7 +36,7 @@ func SystemOauthToken() {
 	fmt.Println("aliRsp:", aliRsp.SignData)
 
 	//支付宝小程序创建订单
-	body2 := make(gopay.BodyMap)
+	body2 := make(sycpay.BodyMap)
 	body2.Set("subject", "创建订单")
 	body2.Set("buyer_id", aliRsp.Response.UserId)
 	body2.Set("out_trade_no", "GZ201901301040355708")

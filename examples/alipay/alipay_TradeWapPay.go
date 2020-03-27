@@ -3,8 +3,8 @@ package alipay
 import (
 	"fmt"
 
-	"github.com/iGoogle-ink/gopay"
-	"github.com/iGoogle-ink/gopay/alipay"
+	"github.com/cqlmq/sycpay"
+	"github.com/cqlmq/sycpay/alipay"
 )
 
 func TradeWapPay() {
@@ -19,13 +19,13 @@ func TradeWapPay() {
 	client.SetCharset("utf-8").
 		SetSignType(alipay.RSA2).
 		SetPrivateKeyType(alipay.PKCS1).
-		//SetReturnUrl("https://www.gopay.ink").
-		SetNotifyUrl("https://www.gopay.ink")
+		//SetReturnUrl("https://www.sycpay.ink").
+		SetNotifyUrl("https://www.sycpay.ink")
 	//请求参数
-	body := make(gopay.BodyMap)
+	body := make(sycpay.BodyMap)
 	body.Set("subject", "手机网站测试支付")
 	body.Set("out_trade_no", "GZ201901301040355703")
-	body.Set("quit_url", "https://www.gopay.ink")
+	body.Set("quit_url", "https://www.sycpay.ink")
 	body.Set("total_amount", "100.00")
 	body.Set("product_code", "QUICK_WAP_WAY")
 	//手机网站支付请求

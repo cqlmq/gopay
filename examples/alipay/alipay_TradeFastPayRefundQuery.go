@@ -3,8 +3,8 @@ package alipay
 import (
 	"fmt"
 
-	"github.com/iGoogle-ink/gopay"
-	"github.com/iGoogle-ink/gopay/alipay"
+	"github.com/cqlmq/sycpay"
+	"github.com/cqlmq/sycpay/alipay"
 )
 
 func TradeFastPayRefundQuery() {
@@ -21,7 +21,7 @@ func TradeFastPayRefundQuery() {
 		SetPrivateKeyType(alipay.PKCS1)
 
 	//请求参数
-	body := make(gopay.BodyMap)
+	body := make(sycpay.BodyMap)
 	body.Set("out_trade_no", "GZ201907301420334577")
 	body.Set("out_request_no", "GZ201907301420334577")
 	//发起退款查询请求

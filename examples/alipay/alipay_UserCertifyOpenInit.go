@@ -3,8 +3,8 @@ package alipay
 import (
 	"fmt"
 
-	"github.com/iGoogle-ink/gopay"
-	"github.com/iGoogle-ink/gopay/alipay"
+	"github.com/cqlmq/sycpay"
+	"github.com/cqlmq/sycpay/alipay"
 )
 
 func UserCertifyOpenInit() {
@@ -21,7 +21,7 @@ func UserCertifyOpenInit() {
 		SetPrivateKeyType(alipay.PKCS1)
 
 	// 请求参数
-	bm := make(gopay.BodyMap)
+	bm := make(sycpay.BodyMap)
 	bm.Set("outer_order_no", "ZGYD201809132323000001234")
 	// 认证场景码：FACE：多因子人脸认证，CERT_PHOTO：多因子证照认证，CERT_PHOTO_FACE ：多因子证照和人脸认证，SMART_FACE：多因子快捷认证
 	bm.Set("biz_code", "FACE")
@@ -34,7 +34,7 @@ func UserCertifyOpenInit() {
 	bm.Set("identity_param", identity)
 	// 商户个性化配置，格式为json
 	merchant := make(map[string]string)
-	merchant["return_url"] = "https://www.gopay.ink"
+	merchant["return_url"] = "https://www.sycpay.ink"
 	bm.Set("merchant_config", merchant)
 
 	//发起请求

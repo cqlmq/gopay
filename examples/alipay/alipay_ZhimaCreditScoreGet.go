@@ -3,8 +3,8 @@ package alipay
 import (
 	"fmt"
 
-	"github.com/iGoogle-ink/gopay"
-	"github.com/iGoogle-ink/gopay/alipay"
+	"github.com/cqlmq/sycpay"
+	"github.com/cqlmq/sycpay/alipay"
 )
 
 func ZhimaCreditScoreGet() {
@@ -21,8 +21,8 @@ func ZhimaCreditScoreGet() {
 		SetAuthToken("") //必须设置此参数
 
 	//请求参数
-	body := make(gopay.BodyMap)
-	transaction_id := gopay.GetRandomString(48)
+	body := make(sycpay.BodyMap)
+	transaction_id := sycpay.GetRandomString(48)
 	body.Set("transaction_id", transaction_id)
 	body.Set("product_code", "w1010100100000000001")
 

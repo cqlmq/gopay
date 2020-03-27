@@ -3,8 +3,8 @@ package alipay
 import (
 	"fmt"
 
-	"github.com/iGoogle-ink/gopay"
-	"github.com/iGoogle-ink/gopay/alipay"
+	"github.com/cqlmq/sycpay"
+	"github.com/cqlmq/sycpay/alipay"
 )
 
 func TradeRefund() {
@@ -21,7 +21,7 @@ func TradeRefund() {
 		SetPrivateKeyType(alipay.PKCS1)
 
 	//请求参数
-	body := make(gopay.BodyMap)
+	body := make(sycpay.BodyMap)
 	body.Set("out_trade_no", "GZ201907301420334577")
 	body.Set("refund_amount", "5")
 	body.Set("refund_reason", "测试退款")

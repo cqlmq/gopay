@@ -3,8 +3,8 @@ package alipay
 import (
 	"fmt"
 
-	"github.com/iGoogle-ink/gopay"
-	"github.com/iGoogle-ink/gopay/alipay"
+	"github.com/cqlmq/sycpay"
+	"github.com/cqlmq/sycpay/alipay"
 )
 
 func TradePay() {
@@ -20,10 +20,10 @@ func TradePay() {
 		SetSignType(alipay.RSA2).
 		SetPrivateKeyType(alipay.PKCS1).
 		//SetAppAuthToken("201908BB03f542de8ecc42b985900f5080407abc").
-		SetNotifyUrl("https://www.gopay.ink")
+		SetNotifyUrl("https://www.sycpay.ink")
 
 	//请求参数
-	body := make(gopay.BodyMap)
+	body := make(sycpay.BodyMap)
 	body.Set("subject", "条码支付")
 	body.Set("scene", "bar_code")
 	body.Set("auth_code", "286248566432274952")

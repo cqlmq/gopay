@@ -1,3 +1,3 @@
-module github.com/cqlmq/gopay
+module github.com/cqlmq/sycpay
 
 go 1.14
